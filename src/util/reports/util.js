@@ -53,6 +53,28 @@ const assignDocumentData = (documents, getter, localKey, foreignKey, as) =>
       );
     });
 
+  const createBookCustom = (sheets, currentBook, headers, reportName, sessionName) => {
+    let currentSheet = 0;
+    return hl(sheets)
+      .doto(() => {
+        currentSheet += 1;
+      })
+      .reduce((wb, sheet) => {
+      //console.log(sheet[1].campCode); 
+      const nName = sheet[1].seasonName;
+      
+        const ws = XLSX.utils.json_to_sheet(sheet, {
+          header: Object.keys(headers),
+          skipHeader: true
+        });
+        XLSX.utils.book_append_sheet(wb, ws, `${reportName} ${currentSheet} - ` + nName.substr(0,12));
+        return wb;
+      }, XLSX.utils.book_new())
+      .map(wb =>
+        XLSX.writeFile(wb, `${reportName}-book${currentBook}-${new Date()}.xlsx`)
+      );
+  };
+       
 const createBook = (sheets, currentBook, headers, reportName) => {
   let currentSheet = 0;
   return hl(sheets)
@@ -77,5 +99,6 @@ module.exports = {
   parseBuffer,
   streamData,
   createBook,
-  assignDocumentData
+  assignDocumentData,
+  createBookCustom
 };
