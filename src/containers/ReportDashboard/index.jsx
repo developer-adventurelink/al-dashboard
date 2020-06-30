@@ -12,11 +12,14 @@ import moment from "moment";
 import signIn from "../../util/reports/signIn";
 import campPhotos from "../../util/reports/campPhotos";
 import fairfaxCampData from "../../util/reports/fairfaxCampData";
+import customReport from "../../util/reports/customReport";
+
 // import { streamSeasons, streamSessions } from '../../util/reports/data';
 const reportMap = {
   signIn,
   campPhotos,
-  fairfaxCampData
+  fairfaxCampData,
+  customReport
 };
 
 class ReportDashboard extends Component {
@@ -66,6 +69,7 @@ class ReportDashboard extends Component {
               <option value="signIn">Sign In Sheets</option>
               <option value="campPhotos">Camp Photos</option>
               <option value="fairfaxCampData">Fairfax Camp Data</option>
+              <option value="customReport">Custom Report</option>
             </FormControl>{" "}
             <ControlLabel>Start Date</ControlLabel>{" "}
             <FormControl
