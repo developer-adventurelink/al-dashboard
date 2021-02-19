@@ -213,7 +213,7 @@ const formatCustomReportData = data => {
   };
 };
 
-module.exports = (startDate, endDate) => {
+const fucn = (startDate, endDate) => {
   let currentBook = 0;
 
   return streamSessionsInDateRange(startDate, endDate)
@@ -305,3 +305,5 @@ module.exports = (startDate, endDate) => {
       console.log(err);
     });
 };
+
+export default fucn;
