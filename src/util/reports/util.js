@@ -72,10 +72,12 @@ const createBook = (sheets, currentBook, headers, reportName) => {
     );
 };
 
-module.exports = {
+const obj = {
   createUrl,
   parseBuffer,
   streamData,
   createBook,
   assignDocumentData
 };
+
+export default obj

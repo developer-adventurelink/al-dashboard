@@ -57,10 +57,12 @@ const endPoints = {
   }
 };
 
-module.exports = {
+const obj = {
   endPoints,
   baseBody,
   baseRequest,
   mailerEmail,
   mailerPass
 };
+
+export default obj

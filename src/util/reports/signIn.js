@@ -159,7 +159,7 @@ const formatSignInData = data => {
   };
 };
 
-module.exports = (startDate, endDate) => {
+const func = (startDate, endDate) => {
   let currentBook = 0;
 
   return streamSessionsInDateRange(startDate, endDate)
@@ -251,3 +251,5 @@ module.exports = (startDate, endDate) => {
       console.log(err);
     });
 };
+
+export default func

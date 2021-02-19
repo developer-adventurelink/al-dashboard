@@ -72,7 +72,7 @@ const assignHasPurchasedPhotos = registrations =>
       )
     );
 
-module.exports = (startDate, endDate) =>
+const func =  (startDate, endDate) =>
   streamSessionsInDateRange(startDate, endDate)
     .collect()
     .flatMap(sessions =>
@@ -132,3 +132,5 @@ module.exports = (startDate, endDate) =>
     .map(sheets => createBook(sheets, 1, campPhotosHeaders, "Camp-Photos"))
     .merge()
     .stopOnError(err => console.log(err));
+
+export default func

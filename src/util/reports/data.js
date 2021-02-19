@@ -51,7 +51,7 @@ const streamTuitions = query => streamData(query, tuition);
 const streamSessionOptions = query => streamData(query, sessionOption);
 const streamFamilies = query => streamData(query, family);
 
-module.exports = {
+const obj = {
   streamSeasons,
   streamSessions,
   streamSessionsInDateRange,
@@ -62,3 +62,5 @@ module.exports = {
   streamSessionOptions,
   streamFamilies
 };
+
+export default obj

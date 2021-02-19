@@ -13,8 +13,7 @@ const fairFaxHeaders = {
   sessionName: "Session Name"
 };
 
-console.log(fairfaxData);
-module.exports = () =>
+const func = () =>
   hl(fetch(fairfaxData))
     .flatMap(response => hl(response.text()))
     .map(data => cheerio.load(data))
@@ -42,7 +41,7 @@ module.exports = () =>
           .map(a => a.trim())
           .filter(a => !!a)
       );
-      return textRows.map(([campCode, location, dateRange, , , openSpots,,sessionName]) => ({
+      return textRows.map(([campCode, location, dateRange, , openSpots,,sessionName]) => ({
         campCode,
         location,
         dateRange,
@@ -54,3 +53,5 @@ module.exports = () =>
     .collect()
     .map(sheets => createBook(sheets, 0, fairFaxHeaders, "Fairfax Enrollment"))
     .merge();
+
+export default func
