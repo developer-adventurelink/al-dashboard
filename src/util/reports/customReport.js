@@ -1,23 +1,23 @@
-const _ = require("lodash");
-const hl = require("highland");
+import _ from "lodash"
+import hl from "highland"
 
-const {
+import {
   streamRegistrations,
   streamPeople,
   streamAnswers,
   streamTuitions,
   streamSessionsInDateRange,
   streamFamilies
-} = require("./data");
+} from "./data"
 
-const { createBook, assignDocumentData, createBookCustom } = require("./util");
+import { assignDocumentData, createBookCustom } from "./util"
 
-var requestSeason = require("request");
+import requestSeason from "request"
 
-const {
+import {
     baseBody,
     baseRequest
-} = require("./constants");
+} from "./constants"
 
 
 var sessionOptions = { method: 'POST',

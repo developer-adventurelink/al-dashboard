@@ -1,11 +1,11 @@
-const hl = require("highland");
-const XLSX = require("xlsx");
-const _ = require("lodash");
-const request = require("request");
-
+import hl  from "highland"
+import XLSX  from "xlsx"
+import _  from "lodash"
+import request  from "request"
+import constants from "./constants"
 const {
   endPoints: { base: api }
-} = require("./constants");
+} = constants
 
 const post = hl.wrapCallback(request.post);
 
@@ -13,16 +13,16 @@ const {
   endPoints: { base },
   baseRequest,
   baseBody
-} = require("./constants");
+} = constants
 
-const createUrl = (url, endPoint) => `${url}/${endPoint}`;
-const parseBuffer = stream =>
+export const createUrl = (url, endPoint) => `${url}/${endPoint}`;
+export const parseBuffer = stream =>
   stream
     .collect()
     .map(buffers => buffers.join(""))
     .map(res => JSON.parse(res));
 
-const streamData = (query, endPoint) => {
+export const streamData = (query, endPoint) => {
   const body = Object.assign(
     { request: Object.assign(query, baseRequest) },
     baseBody
@@ -38,7 +38,7 @@ const streamData = (query, endPoint) => {
     .flatten();
 };
 
-const assignDocumentData = (documents, getter, localKey, foreignKey, as) =>
+export const assignDocumentData = (documents, getter, localKey, foreignKey, as) =>
   getter({ [`${foreignKey}s`]: _.map(documents, localKey) })
     .collect()
     .flatMap(docsToAdd => {
@@ -53,7 +53,7 @@ const assignDocumentData = (documents, getter, localKey, foreignKey, as) =>
       );
     });
 
-  const createBookCustom = (sheets, currentBook, headers, reportName, sessionName) => {
+  export const createBookCustom = (sheets, currentBook, headers, reportName, sessionName) => {
     let currentSheet = 0;
     return hl(sheets)
       .doto(() => {
@@ -75,7 +75,7 @@ const assignDocumentData = (documents, getter, localKey, foreignKey, as) =>
       );
   };
        
-const createBook = (sheets, currentBook, headers, reportName) => {
+export const createBook = (sheets, currentBook, headers, reportName) => {
   let currentSheet = 0;
   return hl(sheets)
     .doto(() => {
@@ -93,14 +93,3 @@ const createBook = (sheets, currentBook, headers, reportName) => {
       XLSX.writeFile(wb, `${reportName}-book${currentBook}-${new Date()}.xlsx`)
     );
 };
-
-const obj = {
-  createUrl,
-  parseBuffer,
-  streamData,
-  createBook,
-  assignDocumentData,
-  createBookCustom
-};
-
-export default obj

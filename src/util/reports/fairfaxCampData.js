@@ -1,9 +1,11 @@
-const cheerio = require("cheerio");
-const hl = require("highland");
-const { createBook } = require("./util");
-const {
+import cheerio  from "cheerio"
+import hl  from "highland"
+import { createBook }  from "./util"
+import constants from "./constants"
+
+const{
   endPoints: { fairfaxData }
-} = require("./constants");
+}  = constants;
 
 const fairFaxHeaders = {
   campCode: "Camp Code",

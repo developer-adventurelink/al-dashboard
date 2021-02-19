@@ -1,28 +1,28 @@
-// const appToken = process.env.APPTOKEN;
-// const userName = process.env.USERNAME;
-// const password = process.env.PASSWORD;
+// export const appToken = process.env.APPTOKEN;
+// export const userName = process.env.USERNAME;
+// export const password = process.env.PASSWORD;
 // const applicationName = process.env.APPLICATION_NAME;
 // const mailerEmail = process.env.MAILER_EMAIL;
 // const mailerPass = process.env.MAILER_PASS;
-const appToken =
+export const appToken =
   "SdEUeIpSkqVRgnnhll+m+dNnEEBWssJwkeREnBHQSJhd8YfPta6Qb3XeoVq0fk4F";
-const userName = "mark@adventurelinks.net";
-const password = "St@rtup1";
-const applicationName = "AdventureLinksNorthernVirginia";
-const mailerEmail = process.env.MAILER_EMAIL;
-const mailerPass = process.env.MAILER_PASS;
+export const userName = "mark@adventurelinks.net";
+export const password = "St@rtup1";
+export const applicationName = "AdventureLinksNorthernVirginia";
+export const mailerEmail = process.env.MAILER_EMAIL;
+export const mailerPass = process.env.MAILER_PASS;
 
-const baseBody = {
+export const baseBody = {
   appToken
 };
 
-const baseRequest = {
+export const baseRequest = {
   userName,
   password,
   applicationName
 };
 
-const endPoints = {
+export const endPoints = {
   base: "https://cors-anywhere.herokuapp.com/https://awapi.active.com/rest",
   fairfaxData:
     "https://cors-anywhere.herokuapp.com/https://fairfax.usedirect.com/FairfaxFCPAWeb/ACTIVITIES/Search.aspx?category_name=CAMPS&search_text=adventure+links&place_id=ALL+PLACES",
@@ -57,7 +57,7 @@ const endPoints = {
   }
 };
 
-const obj = {
+export const obj = {
   endPoints,
   baseBody,
   baseRequest,

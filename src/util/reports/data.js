@@ -1,18 +1,17 @@
-const moment = require("moment");
-const hl = require("highland");
-
+import moment from "moment"
+import constants from "./constants"
+import { streamData }from "./util"
 const {
   endPoints: {
     product: { season, session, tuition, sessionOption },
     registration: { info: registrationInfo },
     person: { detail, answer, family }
   }
-} = require("./constants");
-const { streamData } = require("./util");
+} = constants
 
-const streamSeasons = query => streamData(query, season);
-const streamSessions = query => streamData(query, session);
-const streamSessionsInDateRange = (_startDate, _endDate) => {
+export const streamSeasons = query => streamData(query, season);
+export const streamSessions = query => streamData(query, session);
+export const streamSessionsInDateRange = (_startDate, _endDate) => {
   const startDate = moment(_startDate);
   const endDate = moment(_endDate);
   return streamSeasons({ seasons: [] })
@@ -44,23 +43,9 @@ const streamSessionsInDateRange = (_startDate, _endDate) => {
     );
 };
 
-const streamRegistrations = query => streamData(query, registrationInfo);
-const streamPeople = query => streamData(query, detail);
-const streamAnswers = query => streamData(query, answer);
-const streamTuitions = query => streamData(query, tuition);
-const streamSessionOptions = query => streamData(query, sessionOption);
-const streamFamilies = query => streamData(query, family);
-
-const obj = {
-  streamSeasons,
-  streamSessions,
-  streamSessionsInDateRange,
-  streamRegistrations,
-  streamPeople,
-  streamAnswers,
-  streamTuitions,
-  streamSessionOptions,
-  streamFamilies
-};
-
-export default obj
+export const streamRegistrations = query => streamData(query, registrationInfo);
+export const streamPeople = query => streamData(query, detail);
+export const streamAnswers = query => streamData(query, answer);
+export const streamTuitions = query => streamData(query, tuition);
+export const streamSessionOptions = query => streamData(query, sessionOption);
+export const streamFamilies = query => streamData(query, family);
